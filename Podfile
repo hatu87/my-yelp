@@ -5,5 +5,6 @@ use_frameworks!
 
 target 'my-yelp' do
   pod 'AFNetworking', '~> 2.0'
+  pod 'BDBOAuth1Manager'
 end
 
