@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BusinessTableViewCell.model.didset:BusinessTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.model">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SearchResultsViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
