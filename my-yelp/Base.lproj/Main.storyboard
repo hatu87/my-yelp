@@ -17,21 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iit-kZ-G6d">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="129" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iit-kZ-G6d">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="95" id="gVW-dc-Juj" customClass="BusinessTableViewCell" customModule="my_yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="95"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="129" id="gVW-dc-Juj" customClass="BusinessTableViewCell" customModule="my_yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="129"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gVW-dc-Juj" id="KO1-iY-xEy">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-CH-a4u">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-CH-a4u">
                                                     <rect key="frame" x="8" y="8" width="65" height="65"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="Wlh-hC-lNf"/>
+                                                        <constraint firstAttribute="height" constant="65" id="tPg-PV-WdL"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="apm-7B-Fn5">
                                                     <rect key="frame" x="81" y="31" width="106" height="19"/>
@@ -74,6 +78,11 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="WgB-CH-a4u" firstAttribute="top" secondItem="KO1-iY-xEy" secondAttribute="top" constant="8" id="2n2-x8-TT8"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WgB-CH-a4u" secondAttribute="bottom" constant="12" id="QLi-dm-w2I"/>
+                                                <constraint firstItem="WgB-CH-a4u" firstAttribute="leading" secondItem="KO1-iY-xEy" secondAttribute="leading" constant="8" id="ikE-wM-1mK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
