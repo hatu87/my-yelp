@@ -62,8 +62,8 @@
                                                     <color key="textColor" red="0.37500000000000011" green="0.37500000000000011" blue="0.37500000000000011" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.07 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp9-h1-fN4">
-                                                    <rect key="frame" x="270" y="8" width="46" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.07 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp9-h1-fN4">
+                                                    <rect key="frame" x="267" y="8" width="45" height="16"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.37500000000000011" green="0.37500000000000011" blue="0.37500000000000011" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,6 +82,8 @@
                                                 <constraint firstItem="WgB-CH-a4u" firstAttribute="top" secondItem="KO1-iY-xEy" secondAttribute="top" constant="8" id="2n2-x8-TT8"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WgB-CH-a4u" secondAttribute="bottom" constant="12" id="QLi-dm-w2I"/>
                                                 <constraint firstItem="WgB-CH-a4u" firstAttribute="leading" secondItem="KO1-iY-xEy" secondAttribute="leading" constant="8" id="ikE-wM-1mK"/>
+                                                <constraint firstAttribute="trailing" secondItem="wp9-h1-fN4" secondAttribute="trailing" constant="8" id="pzn-65-dHJ"/>
+                                                <constraint firstItem="wp9-h1-fN4" firstAttribute="top" secondItem="KO1-iY-xEy" secondAttribute="top" constant="8" id="vam-DD-qvt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
