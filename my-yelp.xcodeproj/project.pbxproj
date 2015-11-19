@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		415E1C5A1BFDE175009375AE /* BusinessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E1C591BFDE175009375AE /* BusinessTableViewCell.swift */; };
 		415E1C5C1BFDFA4A009375AE /* placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 415E1C5B1BFDFA4A009375AE /* placeholder-image.png */; };
+		415E1C5F1BFE2440009375AE /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E1C5E1BFE2440009375AE /* SwitchTableViewCell.swift */; };
+		415E1C611BFE25D1009375AE /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E1C601BFE25D1009375AE /* FiltersViewController.swift */; };
 		4170048C1BFCED0900D8CE2B /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4170048B1BFCED0900D8CE2B /* Business.swift */; };
 		4170048F1BFCED3100D8CE2B /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4170048E1BFCED3100D8CE2B /* YelpClient.swift */; };
 		41FFFD421BFB2FDC00BD530E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FFFD411BFB2FDC00BD530E /* AppDelegate.swift */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		415E1C591BFDE175009375AE /* BusinessTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessTableViewCell.swift; sourceTree = "<group>"; };
 		415E1C5B1BFDFA4A009375AE /* placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-image.png"; sourceTree = "<group>"; };
+		415E1C5E1BFE2440009375AE /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		415E1C601BFE25D1009375AE /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		4170048B1BFCED0900D8CE2B /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		4170048E1BFCED3100D8CE2B /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		41FFFD3E1BFB2FDC00BD530E /* my-yelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-yelp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +92,7 @@
 				415E1C5D1BFDFA70009375AE /* images */,
 				4170048D1BFCED1D00D8CE2B /* API */,
 				41FFFD541BFB301600BD530E /* Models */,
-				41FFFD531BFB300C00BD530E /* Controllers */,
+				41FFFD531BFB300C00BD530E /* View Controllers */,
 				41FFFD411BFB2FDC00BD530E /* AppDelegate.swift */,
 				41FFFD451BFB2FDC00BD530E /* Main.storyboard */,
 				41FFFD481BFB2FDC00BD530E /* Assets.xcassets */,
@@ -98,13 +102,15 @@
 			path = "my-yelp";
 			sourceTree = "<group>";
 		};
-		41FFFD531BFB300C00BD530E /* Controllers */ = {
+		41FFFD531BFB300C00BD530E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				41FFFD431BFB2FDC00BD530E /* SearchResultsViewController.swift */,
 				415E1C591BFDE175009375AE /* BusinessTableViewCell.swift */,
+				415E1C5E1BFE2440009375AE /* SwitchTableViewCell.swift */,
+				415E1C601BFE25D1009375AE /* FiltersViewController.swift */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		41FFFD541BFB301600BD530E /* Models */ = {
@@ -257,9 +263,11 @@
 			files = (
 				415E1C5A1BFDE175009375AE /* BusinessTableViewCell.swift in Sources */,
 				4170048F1BFCED3100D8CE2B /* YelpClient.swift in Sources */,
+				415E1C611BFE25D1009375AE /* FiltersViewController.swift in Sources */,
 				4170048C1BFCED0900D8CE2B /* Business.swift in Sources */,
 				41FFFD441BFB2FDC00BD530E /* SearchResultsViewController.swift in Sources */,
 				41FFFD421BFB2FDC00BD530E /* AppDelegate.swift in Sources */,
+				415E1C5F1BFE2440009375AE /* SwitchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
