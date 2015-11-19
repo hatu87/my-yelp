@@ -44,11 +44,17 @@ class BusinessTableViewCell: UITableViewCell {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+                    self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.businessImageView.layer.cornerRadius = 3
         self.businessImageView.clipsToBounds = true
+        self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
