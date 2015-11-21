@@ -11,15 +11,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchResultsViewController.initSearchBar() -&gt; ():SearchResultsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchCtrl.searchBar">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SearchResultsViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "FiltersViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:FiltersViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "tableView.dequeueReusableCellWithIdentifier(&quot;SwitchCell&quot;, forIndexPath: indexPath)">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SearchResultsViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SearchResultsViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

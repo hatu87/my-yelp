@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate, UISearchResultsUpdating {
 
 
     @IBOutlet weak var tableView: UITableView!
     var businesses: [Business]!
+    var searchCtrl: UISearchController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,8 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
-
+        
+        initSearchBar()
         
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -34,7 +37,33 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
 
+    var searchBar: UISearchBar!
+    
+    func initSearchBar(){
+        // init search bar
+        searchCtrl = UISearchController(searchResultsController: nil)
+        searchCtrl.searchBar.sizeToFit()
+        navigationItem.titleView = searchCtrl.searchBar
+        searchCtrl.hidesNavigationBarDuringPresentation = false
+        searchCtrl.dimsBackgroundDuringPresentation = false
 
+        searchCtrl.searchResultsUpdater = self
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController){
+        let searchText = searchController.searchBar.text
+        
+        
+        Business.searchWithTerm(searchText!, sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+        }
+    }
+
+    func searchOffline(){
+        
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         guard self.businesses != nil else{
             return 0
