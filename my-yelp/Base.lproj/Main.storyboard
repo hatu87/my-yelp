@@ -194,21 +194,30 @@
                                             <outlet property="switchLabel" destination="m6k-ad-lGL" id="tTC-uq-8xV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleValueCell" rowHeight="79" id="njd-pW-c2s">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleValueCell" rowHeight="79" id="njd-pW-c2s" customClass="SingleValueTableViewCell" customModule="my_yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="147" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="njd-pW-c2s" id="uza-D0-Hhz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C7S-qM-d6v">
-                                                    <rect key="frame" x="-8" y="-54" width="320" height="216"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7S-qM-d6v">
+                                                    <rect key="frame" x="0.0" y="0.0" width="312" height="78"/>
                                                     <animations/>
                                                 </pickerView>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="C7S-qM-d6v" firstAttribute="leading" secondItem="uza-D0-Hhz" secondAttribute="leading" id="B8N-ka-lYB"/>
+                                                <constraint firstItem="C7S-qM-d6v" firstAttribute="top" secondItem="uza-D0-Hhz" secondAttribute="top" id="CuK-9d-d38"/>
+                                                <constraint firstAttribute="trailing" secondItem="C7S-qM-d6v" secondAttribute="trailing" constant="8" id="ODx-W3-sPm"/>
+                                                <constraint firstAttribute="bottom" secondItem="C7S-qM-d6v" secondAttribute="bottom" id="qgf-8v-7pz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="pickerView" destination="C7S-qM-d6v" id="eNQ-6w-3Qe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

@@ -19,13 +19,14 @@ enum FilterType {
 
 class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MultiValueTableViewCellDelegate {
 
-    var switchStates: [Int:Bool]!
+    var isSelectedDeals: Bool!
+    var selectedCategoriesState: [Int:Bool]!
     weak var delegate: FiltersViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        switchStates = [Int:Bool]()
+        selectedCategoriesState = [Int:Bool]()
         
         
         // load yelp categories
@@ -34,7 +35,6 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(MultiValueTableViewCell.self, forCellReuseIdentifier: self.cellId)
         tableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: self.headerViewId)
     }
     
@@ -73,7 +73,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
         var filters = [String:AnyObject]()
         var selectedCategories = [String]()
-        for (row, isSelected) in switchStates {
+        for (row, isSelected) in selectedCategoriesState {
             if isSelected {
                 selectedCategories.append(categories[row].alias)
             }
@@ -83,12 +83,21 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             filters["categories"] = selectedCategories
         }
         
+        // get selected deal option
+        filters["deals"] = isSelectedDeals
+        
+        // get selected distance option
+        
+        
+        // get selected sort by option
+        
+        
         delegate?.filterViewController?(self, didUpdateFilters: filters)
     }
     
     let cellId = "FilterCell"
     let headerViewId = "TableViewHeaderView"
-    let categoryCellId = "MyCell"
+
     let headers = ["deals", "distance", "sort", "category"]
     var data2: [String:[String:Any]] = [
         "deals": [
@@ -126,47 +135,54 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         let headerData: [String:Any] = data2[headers[section]]!
         let options = headerData["options"]
+        let type = headerData["type"] as! FilterType
+        
+        if type == FilterType.SingleValue {
+            return 1
+        }
         
         return (options as! NSArray).count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(categoryCellId, forIndexPath: indexPath) as! MultiValueTableViewCell
+
 
         let headerCode = headers[indexPath.section]
         let headerData: [String:Any] = data2[headerCode]!
-
-        if headerCode == "category" {
-            let options = headerData["options"] as! [Category]
-            let text = options[indexPath.row].title
-            cell.switchLabel.text = text
-            
-            cell.delegate = self
-            
-            if switchStates[indexPath.row] != nil {
-                cell.onSwitch.on = switchStates[indexPath.row]!
-            } else {
-                cell.onSwitch.on = false
-            }
-            
-            cell.onSwitch.on = switchStates[indexPath.row] ?? false
-            
-            return cell
-        } else if headerCode == "deals" {
-            let options = headerData["options"] as! [String]
-            cell.delegate = self
-            cell.switchLabel.text = options[indexPath.row]
-            
-            return cell
-        } else {
-            let options = headerData["options"] as! [String]
-            cell.delegate = self
-            cell.switchLabel.text = options[indexPath.row]
-            
-            return cell
-        }
+        let type = headerData["type"] as! FilterType
         
-        return cell
+        switch type {
+        case .MultiValue:
+                let cell = tableView.dequeueReusableCellWithIdentifier("MultiValueCell", forIndexPath: indexPath) as! MultiValueTableViewCell
+                
+                var text: String
+                if headerCode == "category" {
+                    let options = headerData["options"] as! [Category]
+                    text = options[indexPath.row].title
+                } else {
+                    let options = headerData["options"] as! [String]
+                    text = options[indexPath.row]
+                }
+            
+                cell.switchLabel.text = text
+                cell.delegate = self
+                
+                if selectedCategoriesState[indexPath.row] != nil {
+                    cell.onSwitch.on = selectedCategoriesState[indexPath.row]!
+                } else {
+                    cell.onSwitch.on = false
+                }
+                
+                cell.onSwitch.on = selectedCategoriesState[indexPath.row] ?? false
+                
+                return cell
+        case .SingleValue:
+                let options = headerData["options"] as! [String]
+                let cell = tableView.dequeueReusableCellWithIdentifier("SingleValueCell", forIndexPath: indexPath) as! SingleValueTableViewCell
+
+                cell.data = options
+                return cell
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -175,8 +191,13 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func switchCell(switchCell: MultiValueTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
-        
-        switchStates[indexPath.row] = value
+        let headerCode = headers[indexPath.section]
+    
+        if headerCode == "deals" {
+            isSelectedDeals = value
+        } else {
+            selectedCategoriesState[indexPath.row] = value
+        }
         print("filter views got the switch cell")
     }
     /*
