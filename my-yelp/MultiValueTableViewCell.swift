@@ -8,15 +8,15 @@
 
 import UIKit
 
-@objc protocol CategoryTableViewCellDelegate {
-    optional func switchCell(switchCell: CategoryTableViewCell, didChangeValue value: Bool)
+@objc protocol MultiValueTableViewCellDelegate {
+    optional func switchCell(switchCell: MultiValueTableViewCell, didChangeValue value: Bool)
 }
 
-class CategoryTableViewCell: UITableViewCell {
+class MultiValueTableViewCell: UITableViewCell {
 
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var onSwitch: UISwitch!
-    weak var delegate: CategoryTableViewCellDelegate?
+    weak var delegate: MultiValueTableViewCellDelegate?
     
     
     override func awakeFromNib() {

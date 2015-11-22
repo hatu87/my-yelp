@@ -12,9 +12,13 @@ import UIKit
     optional func filterViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
 }
 
-class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CategoryTableViewCellDelegate {
+enum FilterType {
+    case SingleValue
+    case MultiValue
+}
 
-    var categories: [[String:String]]!
+class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MultiValueTableViewCellDelegate {
+
     var switchStates: [Int:Bool]!
     weak var delegate: FiltersViewControllerDelegate?
     
@@ -23,24 +27,38 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         switchStates = [Int:Bool]()
         
-        // Do any additional setup after loading the view.
-        self.categories = yelpCategories()
         
+        // load yelp categories
+        loadYelpCategories()
+        
+        // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(CategoryTableViewCell.self, forCellReuseIdentifier: self.cellId)
+        tableView.registerClass(MultiValueTableViewCell.self, forCellReuseIdentifier: self.cellId)
         tableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: self.headerViewId)
     }
-
-    func yelpCategories() -> [[String:String]]{
-        return [["name": "Afghan", "code":"afghani"],
-                ["name": "African", "code":"african"],
-                ["name": "American, New", "code": "newamerican"]]
-    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func loadYelpCategories() {
+        Category.updateCategoriesFromServer(callback: {(data, error) -> Void in
+            guard error == nil else {
+                switch error! {
+                case CategoryError.NoNetwork:
+                    print("No network")
+                case CategoryError.WrongJsonFormat:
+                    print("Wrong json format")
+                case CategoryError.WrongUrlFormat:
+                    print("wrong url format")
+                }
+                
+                return
+            }
+            
+            if let categories = data as [Category]! {
+                self.data2["category"]!["options"] = categories
+                
+                self.tableView.reloadData()
+            }
+        })
     }
     
     @IBAction func onCancelButton(sender: AnyObject) {
@@ -50,11 +68,14 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func onSearchButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
         
+        // get selected categories
+        let categories = self.data2["category"]!["options"] as! [Category]
+        
         var filters = [String:AnyObject]()
         var selectedCategories = [String]()
         for (row, isSelected) in switchStates {
             if isSelected {
-                selectedCategories.append(categories[row]["code"]!)
+                selectedCategories.append(categories[row].alias)
             }
         }
         
@@ -68,44 +89,91 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     let cellId = "FilterCell"
     let headerViewId = "TableViewHeaderView"
     let categoryCellId = "MyCell"
-    let data = [("", ["Offering a Deal"]),
-                        ("Distance", ["0.3 miles", "1 mile", "5 miles", "20 miles"]),
-                        ("Sort By", ["Best Match", "Distance", "Highest Rated"]),
-                        ("Category", ["Afghan", "African"])]
+    let headers = ["deals", "distance", "sort", "category"]
+    var data2: [String:[String:Any]] = [
+        "deals": [
+            "title": "",
+            "options": ["Offering a Deal"],
+            "type": FilterType.MultiValue
+        ],
+        "distance": [
+            "title": "Distance",
+            "options": [ "0.3 miles", "1 mile", "5 miles", "20 miles"],
+            "type": FilterType.SingleValue
+        ],
+        "sort": [
+            "title": "Sort By",
+            "options": ["Best Match", "Distance", "Highest Rated"],
+            "type": FilterType.SingleValue
+        ],
+        "category": [
+            "title": "Category",
+            "options": [],
+            "type": FilterType.MultiValue
+        ]
+    ]
+    
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(self.headerViewId)
-
-        header!.textLabel!.text = data[section].0
+        let headerData: [String:Any] = data2[headers[section]]!
+        let text = headerData["title"] as! String
+        
+        header!.textLabel!.text = text
         return header
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        let headerData: [String:Any] = data2[headers[section]]!
+        let options = headerData["options"]
         
-        return self.data[section].1.count
+        return (options as! NSArray).count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(categoryCellId, forIndexPath: indexPath) as! CategoryTableViewCell
-        
-        cell.switchLabel.text = self.data[indexPath.section].1[indexPath.row]
-        cell.delegate = self
-        
-        if switchStates[indexPath.row] != nil {
-            cell.onSwitch.on = switchStates[indexPath.row]!
+        let cell = tableView.dequeueReusableCellWithIdentifier(categoryCellId, forIndexPath: indexPath) as! MultiValueTableViewCell
+
+        let headerCode = headers[indexPath.section]
+        let headerData: [String:Any] = data2[headerCode]!
+
+        if headerCode == "category" {
+            let options = headerData["options"] as! [Category]
+            let text = options[indexPath.row].title
+            cell.switchLabel.text = text
+            
+            cell.delegate = self
+            
+            if switchStates[indexPath.row] != nil {
+                cell.onSwitch.on = switchStates[indexPath.row]!
+            } else {
+                cell.onSwitch.on = false
+            }
+            
+            cell.onSwitch.on = switchStates[indexPath.row] ?? false
+            
+            return cell
+        } else if headerCode == "deals" {
+            let options = headerData["options"] as! [String]
+            cell.delegate = self
+            cell.switchLabel.text = options[indexPath.row]
+            
+            return cell
         } else {
-            cell.onSwitch.on = false
+            let options = headerData["options"] as! [String]
+            cell.delegate = self
+            cell.switchLabel.text = options[indexPath.row]
+            
+            return cell
         }
         
-        cell.onSwitch.on = switchStates[indexPath.row] ?? false
         return cell
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return headers.count
     }
     
-    func switchCell(switchCell: CategoryTableViewCell, didChangeValue value: Bool) {
+    func switchCell(switchCell: MultiValueTableViewCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
         
         switchStates[indexPath.row] = value

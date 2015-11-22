@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "BusinessTableViewCell.model.didset:BusinessTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.model">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "FiltersViewController.tableView(UITableView, viewForHeaderInSection : Int) -&gt; UIView?:FiltersViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SearchResultsViewController.initSearchBar() -&gt; ():SearchResultsViewController.swift">
@@ -19,13 +14,41 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "FiltersViewController.(loadYepCategories(FiltersViewController) -&gt; () -&gt; ()).(closure #1):FiltersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BusinessTableViewCell.model.didset:BusinessTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.model">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FiltersViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:FiltersViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headerData[&quot;options&quot;] as! [String]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SearchResultsViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SearchResultsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "FiltersViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:FiltersViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "tableView.dequeueReusableCellWithIdentifier(&quot;SwitchCell&quot;, forIndexPath: indexPath)">
+               value = "options[indexPath.row].title">
+            </PersistentString>
+            <PersistentString
+               value = "cell.switchLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
