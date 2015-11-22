@@ -49,14 +49,14 @@
                                                     <rect key="frame" x="81" y="8" width="178" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88 Division St, Mission Bay" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9F-bo-T6e">
                                                     <rect key="frame" x="81" y="55" width="231" height="16"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gl9-Lb-jsM">
@@ -159,7 +159,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="55" id="5Y1-MH-9ea" customClass="SwitchTableViewCell" customModule="my_yelp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="55" id="5Y1-MH-9ea" customClass="CategoryTableViewCell" customModule="my_yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Y1-MH-9ea" id="jUF-G5-4ZO">
@@ -170,7 +170,7 @@
                                                     <rect key="frame" x="8" y="8" width="42" height="38"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ja-Qw-4fE">
@@ -200,10 +200,10 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XnM-3M-abR" firstAttribute="leading" secondItem="0NC-MY-EK5" secondAttribute="leading" id="AJ4-Cn-Uuc"/>
-                            <constraint firstAttribute="trailing" secondItem="XnM-3M-abR" secondAttribute="trailing" id="DHN-B2-zEp"/>
-                            <constraint firstItem="XnM-3M-abR" firstAttribute="top" secondItem="0NC-MY-EK5" secondAttribute="top" id="KCp-om-9GT"/>
-                            <constraint firstItem="RrM-1F-0i0" firstAttribute="top" secondItem="XnM-3M-abR" secondAttribute="bottom" id="Z4a-vw-34N"/>
+                            <constraint firstAttribute="trailing" secondItem="XnM-3M-abR" secondAttribute="trailing" id="HN1-RN-iEU"/>
+                            <constraint firstItem="XnM-3M-abR" firstAttribute="top" secondItem="0NC-MY-EK5" secondAttribute="top" id="JtC-3G-jqk"/>
+                            <constraint firstItem="XnM-3M-abR" firstAttribute="leading" secondItem="0NC-MY-EK5" secondAttribute="leading" id="eel-N0-OdW"/>
+                            <constraint firstItem="RrM-1F-0i0" firstAttribute="top" secondItem="XnM-3M-abR" secondAttribute="bottom" id="eiH-Rz-5dQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="DCb-Ks-h2e">
