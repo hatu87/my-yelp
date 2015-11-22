@@ -30,7 +30,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         // load yelp categories
-        loadYelpCategories()
+        //loadYelpCategories()
         
         // Do any additional setup after loading the view.
         tableView.delegate = self
@@ -117,7 +117,11 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         ],
         "category": [
             "title": "Category",
-            "options": [],
+            "options": [
+                Category(dictionary: ["alias": "3dprinting", "title": "3D Printing"]),
+                Category(dictionary: ["alias": "abruzzese", "title": "Abruzzese"]),
+                Category(dictionary: ["alias": "absinthebars", "title": "Absinthe Bars"])
+            ],
             "type": FilterType.MultiValue
         ]
     ]
@@ -136,9 +140,14 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let headerData: [String:Any] = data2[headers[section]]!
         let options = headerData["options"]
         let type = headerData["type"] as! FilterType
+        let headerCode = headers[section]
         
         if type == FilterType.SingleValue {
             return 1
+        }
+        
+        if headerCode == "category" && isExpandCategories == false {
+            return (options as! NSArray).count + 1
         }
         
         return (options as! NSArray).count
@@ -153,17 +162,24 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch type {
         case .MultiValue:
-                let cell = tableView.dequeueReusableCellWithIdentifier("MultiValueCell", forIndexPath: indexPath) as! MultiValueTableViewCell
-                
+            
                 var text: String
                 if headerCode == "category" {
                     let options = headerData["options"] as! [Category]
+                    
+                    if indexPath.row == options.count && isExpandCategories == false {
+                        // show see all cell
+                        let seeAllCell = tableView.dequeueReusableCellWithIdentifier("SeeAllCell", forIndexPath: indexPath) as UITableViewCell
+                        return seeAllCell
+                    }
+                    
                     text = options[indexPath.row].title
                 } else {
                     let options = headerData["options"] as! [String]
                     text = options[indexPath.row]
                 }
-            
+                let cell = tableView.dequeueReusableCellWithIdentifier("MultiValueCell", forIndexPath: indexPath) as! MultiValueTableViewCell
+                
                 cell.switchLabel.text = text
                 cell.delegate = self
                 
@@ -182,6 +198,24 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
 
                 cell.data = options
                 return cell
+        }
+    }
+    
+    var isExpandCategories = false
+    
+    func tableView(_ tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let headerCode = headers[indexPath.section]
+        let headerData = data2[headerCode]!
+        let options = headerData["options"] as! [Category]
+        if headerCode == "category" && indexPath.row == options.count {
+            
+            if isExpandCategories == false {
+                loadYelpCategories()
+                isExpandCategories = true
+                tableView.reloadData()
+
+            }
         }
     }
     
