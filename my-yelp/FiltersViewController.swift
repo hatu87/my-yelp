@@ -87,10 +87,10 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         filters["deals"] = isSelectedDeals
         
         // get selected distance option
-        
+        filters["distance"] = (self.data2["sort"]!["options"] as! [String])[selectedDistanceIndex]
         
         // get selected sort by option
-        
+        filters["sort"] = (self.data2["sort"]!["options"] as! [String])[selectedSortIndex]
         
         delegate?.filterViewController?(self, didUpdateFilters: filters)
     }
@@ -142,12 +142,18 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let type = headerData["type"] as! FilterType
         let headerCode = headers[section]
         
-        if type == FilterType.SingleValue {
-            return 1
-        }
-        
-        if headerCode == "category" && isExpandCategories == false {
-            return (options as! NSArray).count + 1
+        if headerCode == "distance" {
+            if isExpandDistance == false {
+                return 1
+            }
+        } else if headerCode == "sort" {
+            if isExpandSort == false {
+                return 1
+            }
+        } else if headerCode == "category" {
+            if isExpandCategories == false {
+                return (options as! NSArray).count + 1
+            }
         }
         
         return (options as! NSArray).count
@@ -195,27 +201,71 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         case .SingleValue:
                 let options = headerData["options"] as! [String]
                 let cell = tableView.dequeueReusableCellWithIdentifier("SingleValueCell", forIndexPath: indexPath) as! SingleValueTableViewCell
+                var index = indexPath.row
+                cell.accessoryType = UITableViewCellAccessoryType.None
+                
+                if headerCode == "distance" {
 
-                cell.data = options
+                    if isExpandDistance == false {
+                        index = selectedDistanceIndex
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                        //cell.data = options[selectedDistanceIndex]
+                    } else if index == selectedDistanceIndex{
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    }
+                } else {
+                    if isExpandSort == false {
+                        index = selectedSortIndex
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                        //cell.data = options[selectedDistanceIndex]
+                    } else if index == selectedSortIndex{
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    }
+                }
+
+                cell.data = options[index]
                 return cell
         }
     }
     
     var isExpandCategories = false
+    var isExpandDistance = false
+    var selectedDistanceIndex = 0
+    var isExpandSort = false
+    var selectedSortIndex = 0
     
     func tableView(_ tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let headerCode = headers[indexPath.section]
         let headerData = data2[headerCode]!
-        let options = headerData["options"] as! [Category]
-        if headerCode == "category" && indexPath.row == options.count {
             
-            if isExpandCategories == false {
-                loadYelpCategories()
-                isExpandCategories = true
-                tableView.reloadData()
-
+        if headerCode == "category" {
+            let options = headerData["options"] as! [Category]
+            if indexPath.row == options.count {
+                if isExpandCategories == false {
+                    loadYelpCategories()
+                    isExpandCategories = true
+                    tableView.reloadData()
+                        
+                }
             }
+        } else if headerCode == "distance"{
+            if isExpandDistance == false {
+                // expand distance
+                isExpandDistance = true
+            } else {
+                selectedDistanceIndex = indexPath.row
+                isExpandDistance = false
+            }
+            tableView.reloadData()
+        } else if headerCode == "sort" {
+            if isExpandSort == false {
+                isExpandSort = true
+            } else {
+                selectedSortIndex = indexPath.row
+                isExpandSort = false
+            }
+            tableView.reloadData()
         }
     }
     

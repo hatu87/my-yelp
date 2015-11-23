@@ -194,33 +194,36 @@
                                             <outlet property="switchLabel" destination="m6k-ad-lGL" id="tTC-uq-8xV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleValueCell" rowHeight="79" id="njd-pW-c2s" customClass="SingleValueTableViewCell" customModule="my_yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="147" width="320" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SingleValueCell" rowHeight="45" id="njd-pW-c2s" customClass="SingleValueTableViewCell" customModule="my_yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="147" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="njd-pW-c2s" id="uza-D0-Hhz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7S-qM-d6v">
-                                                    <rect key="frame" x="0.0" y="0.0" width="312" height="78"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="484-j3-44T">
+                                                    <rect key="frame" x="8" y="8" width="271" height="28"/>
                                                     <animations/>
-                                                </pickerView>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="C7S-qM-d6v" firstAttribute="leading" secondItem="uza-D0-Hhz" secondAttribute="leading" id="B8N-ka-lYB"/>
-                                                <constraint firstItem="C7S-qM-d6v" firstAttribute="top" secondItem="uza-D0-Hhz" secondAttribute="top" id="CuK-9d-d38"/>
-                                                <constraint firstAttribute="trailing" secondItem="C7S-qM-d6v" secondAttribute="trailing" constant="8" id="ODx-W3-sPm"/>
-                                                <constraint firstAttribute="bottom" secondItem="C7S-qM-d6v" secondAttribute="bottom" id="qgf-8v-7pz"/>
+                                                <constraint firstItem="484-j3-44T" firstAttribute="leading" secondItem="uza-D0-Hhz" secondAttribute="leading" constant="8" id="VCP-Ry-gLP"/>
+                                                <constraint firstItem="484-j3-44T" firstAttribute="top" secondItem="uza-D0-Hhz" secondAttribute="top" constant="8" id="Vsf-iO-y76"/>
+                                                <constraint firstAttribute="bottom" secondItem="484-j3-44T" secondAttribute="bottom" constant="8" id="sS3-Z8-dE6"/>
+                                                <constraint firstAttribute="trailing" secondItem="484-j3-44T" secondAttribute="trailing" constant="8" id="za8-LM-PeL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <outlet property="pickerView" destination="C7S-qM-d6v" id="eNQ-6w-3Qe"/>
+                                            <outlet property="label" destination="484-j3-44T" id="m6q-IJ-JGe"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SeeAllCell" id="Yfb-mK-OLw">
-                                        <rect key="frame" x="0.0" y="226" width="320" height="55"/>
+                                        <rect key="frame" x="0.0" y="192" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yfb-mK-OLw" id="9gv-Hu-GTn">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>

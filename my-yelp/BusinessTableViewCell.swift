@@ -25,7 +25,15 @@ class BusinessTableViewCell: UITableViewCell {
             self.categoriesLabel.text = self.model.categories
             self.addressLabel.text = self.model.address
             self.nameLabel.text = self.model.name
-
+            
+            if let count = self.model.reviewCount {
+                self.reviews.text = "\(self.model.reviewCount!.stringValue) reviews"
+            } else {
+                self.reviews.text = "0 reviews"
+            }
+            
+            
+            
             let loadingImage = UIImage(contentsOfFile: "placeholder-image.png")
             
             var request = NSURLRequest(URL: self.model.imageURL!)

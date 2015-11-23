@@ -8,20 +8,19 @@
 
 import UIKit
 
-class SingleValueTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
+class SingleValueTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var label: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        pickerView.dataSource = self
-        pickerView.delegate = self
     }
 
-    var data: [String]! {
+    var data: String! {
         didSet {
-            pickerView.reloadAllComponents()
+            label.text = data
         }
     }
     override func setSelected(selected: Bool, animated: Bool) {
@@ -30,25 +29,4 @@ class SingleValueTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         // Configure the view for the selected state
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // returns the # of rows in each component..
-
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard data != nil else {
-            return 0
-        }
-        return data.count
-    }
-
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard data != nil else {
-            return ""
-        }
-        
-        return data[row]
-    }
-
 }

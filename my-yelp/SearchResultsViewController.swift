@@ -97,9 +97,25 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     func filterViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
         var categories = filters["categories"] as? [String]
         var deals = filters["deals"] as? Bool
+        var distance = filters["distance"] as? String
+        var sort = filters["sort"] as? String
         
+        var sortValue: YelpSortMode? = nil
         
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+        if let sortStringValue = sort {
+            switch sortStringValue {
+                case "Best Match":
+                    sortValue = YelpSortMode.BestMatched
+                case "Distance":
+                    sortValue = YelpSortMode.Distance
+                case "Highest Rated":
+                    sortValue = YelpSortMode.HighestRated
+                default:
+                    break
+            }
+        }
+        
+        Business.searchWithTerm("Restaurants", sort: sortValue, categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()            
         }

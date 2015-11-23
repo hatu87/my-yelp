@@ -6,6 +6,17 @@
          contextName = "FiltersViewController.tableView(UITableView, viewForHeaderInSection : Int) -&gt; UIView?:FiltersViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "FiltersViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():FiltersViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedDistanceIndex">
+            </PersistentString>
+            <PersistentString
+               value = "isExpandDistance">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SearchResultsViewController.initSearchBar() -&gt; ():SearchResultsViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -39,9 +50,6 @@
          contextName = "FiltersViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:FiltersViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "options[indexPath.row].title">
-            </PersistentString>
-            <PersistentString
                value = "cell.switchLabel.text">
             </PersistentString>
             <PersistentString
@@ -49,6 +57,9 @@
             </PersistentString>
             <PersistentString
                value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "options[selectedDistanceIndex]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
